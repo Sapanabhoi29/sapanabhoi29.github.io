@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapana Bhoi | Full Stack Developer</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2D3142;
+            --secondary: #BFC0C0;
+            --accent: #EF8354;
+            --light: #FFFFFF;
+            --dark: #1a1d2e;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--primary);
+            overflow-x: hidden;
+            background: var(--light);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Cursor Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(239, 131, 84, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--primary) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(102, 126, 234, 0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--primary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .accent-text {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(239, 131, 84, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(239, 131, 84, 0.4);
+            color: white;
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 4rem;
+        }
+
+        /* About Section */
+        #about {
+            background: white;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 60px 50px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: #f8f9fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(239, 131, 84, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: white;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-description {
+            color: var(--primary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            background: #f0f0f0;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        #experience {
+            background: var(--dark);
+            color: white;
+        }
+
+        #experience .section-title {
+            color: white;
+        }
+
+        #experience .section-title::after {
+            background: var(--accent);
+        }
+
+        #experience .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -56px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--dark);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .timeline-company {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-description {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        #contact .section-title {
+            color: white;
+        }
+
+        #contact .section-title::after {
+            background: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contact-value a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .btn-secondary-custom {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .about-card {
+                padding: 40px 30px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-item::before {
+                left: -36px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Education Section */
+        .education-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--accent);
+        }
+
+        .education-degree {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .education-institution {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--secondary);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .education-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .education-detail-item strong {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Sapana Bhoi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Hi, I'm <span class="accent-text">Sapana</span><br>
+                            Full Stack Developer
+                        </h1>
+                        <p class="hero-subtitle">Laravel Specialist | API Developer | Backend Engineer</p>
+                        <p class="hero-description">
+                            Crafting scalable web applications with 2+ years of expertise in PHP, Laravel, and modern web technologies. 
+                            Passionate about building high-performance solutions that deliver exceptional user experiences.
+                        </p>
+                        <div>
+                            <a href="#contact" class="btn-primary-custom">Get In Touch</a>
+                            <a href="#projects" class="btn-secondary-custom">View Work</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Passionate about creating digital experiences</p>
+            </div>
+            
+            <div class="about-card">
+                <p class="about-text">
+                    I'm an experienced Web Developer with a strong foundation in building scalable and high-performance web applications. 
+                    My journey in web development spans over 2 years, during which I've honed my skills in the complete development lifecycle—from 
+                    designing intuitive front-end interfaces to developing secure and optimized backend services.
+                </p>
+                <p class="about-text">
+                    I specialize in PHP and Laravel, with extensive experience in integrating third-party APIs, enhancing system performance, 
+                    and delivering user-friendly solutions. My approach combines technical expertise with a collaborative mindset, ensuring 
+                    that every project I work on meets both business objectives and user needs.
+                </p>
+                
+                <div class="about-stats">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">2+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Major Projects</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Technologies I work with</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="skill-icon">🐘</span>
+                    <div class="skill-name">PHP</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">⚡</span>
+                    <div class="skill-name">Laravel</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🗄️</span>
+                    <div class="skill-name">MySQL</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📜</span>
+                    <div class="skill-name">JavaScript</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">💎</span>
+                    <div class="skill-name">jQuery</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔄</span>
+                    <div class="skill-name">Ajax</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🎨</span>
+                    <div class="skill-name">Bootstrap</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📱</span>
+                    <div class="skill-name">HTML5</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🎭</span>
+                    <div class="skill-name">CSS3</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📡</span>
+                    <div class="skill-name">REST API</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔧</span>
+                    <div class="skill-name">Postman</div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🌿</span>
+                    <div class="skill-name">GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcase of my recent work</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Raiya Telephony -->
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Raiya Telephony</h3>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Contributed to the backend development of an AI-powered telephony system. Developed comprehensive APIs for 
+                                call scheduling, campaign management, and real-time call tracking. Integrated Bland AI services for voice 
+                                automation and multilingual support, while implementing secure authentication and role-based access controls.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">REST API</span>
+                                <span class="tech-badge">AI Integration</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CheckMate -->
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">CheckMate</h3>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Developed the backend system for an internal management application used by client companies. Implemented 
+                                secure authentication and role-based access for staff and security guards. Designed RESTful APIs to manage 
+                                data, employee attendance, and location tracking with optimized database queries.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">REST API</span>
+                                <span class="tech-badge">Authentication</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kalcy Finance -->
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Kalcy Finance</h3>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Contributed to both backend and frontend development of a financial platform. Designed and developed 
+                                responsive web pages ensuring seamless user experience across devices. Built and integrated RESTful APIs 
+                                with extensive MySQL optimization for enhanced performance and data integrity.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BNG -->
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">BNG (Business Networking Group)</h3>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Developed and maintained backend services for a business networking application. Created APIs to enable 
+                                users to share and access business opportunities within a trusted community. Implemented comprehensive 
+                                user authentication, authorization, and secure data storage with optimized backend logic for scalability.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">REST API</span>
+                                <span class="tech-badge">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">My professional journey</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="timeline">
+                        <!-- Current Position -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Software Engineer</h3>
+                                <div class="timeline-company">EarnWealth Solutions Pvt Ltd</div>
+                                <div class="timeline-date">April 2024 - Present | Pune</div>
+                                <ul class="timeline-description">
+                                    <li>Designed and developed scalable web applications using PHP & Laravel</li>
+                                    <li>Built responsive front-end components with HTML, CSS, jQuery, and AJAX</li>
+                                    <li>Integrated third-party APIs and improved system performance</li>
+                                    <li>Collaborated with cross-functional teams to gather and implement requirements</li>
+                                    <li>Contributed to product updates, feature enhancements, and deployment cycles</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Trainee Position -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Software Engineer Trainee</h3>
+                                <div class="timeline-company">EarnWealth Solutions Pvt Ltd</div>
+                                <div class="timeline-date">March 2023 - January 2024 | Pune</div>
+                                <ul class="timeline-description">
+                                    <li>Learned and implemented best practices in web development</li>
+                                    <li>Assisted in the development of various web applications</li>
+                                    <li>Gained hands-on experience with Laravel framework and RESTful API development</li>
+                                    <li>Participated in code reviews and team collaborations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="mt-5">
+                        <h3 class="timeline-title mb-4">Education</h3>
+                        <div class="education-card">
+                            <div class="education-degree">B.Tech in Civil Engineering</div>
+                            <div class="education-institution">R C Patel Institute of Technology, Shirpur</div>
+                            <div class="education-details">
+                                <div class="education-detail-item">
+                                    <span>📅</span>
+                                    <span>2018 - 2021</span>
+                                </div>
+                                <div class="education-detail-item">
+                                    <span>🎓</span>
+                                    <span><strong>CGPA:</strong> 8.59</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Feel free to reach out for collaborations or just a friendly chat</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:sapanabhoi29@gmail.com">sapanabhoi29@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+917218551459">+91 7218551459</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Pune, Maharashtra, India</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Sapana Bhoi. Crafted with passion and code.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('section, .project-card, .skill-item, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu close on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    bootstrap.Collapse.getInstance(navbarCollapse).hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
